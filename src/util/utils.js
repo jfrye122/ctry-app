@@ -53,7 +53,6 @@ export const GET_LANGUAGE_CODE = gql`
       name
       native
       code
-      }
     }
   }
-`;//JF in progress will need to look into getting lang
+`; //JF in progress will need to look into getting lang
