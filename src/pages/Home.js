@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Home.css";
 import { useQuery, gql } from "@apollo/client";
+import { AnApolloClient } from "../util/utils";
+import { ContriesList, myLists } from "./ContriesList";
 
 const Home = () => {
   const [state, setState] = useState({ searchText: "" });
@@ -16,7 +18,7 @@ const Home = () => {
       }
     }
   `);
-
+  
   //PF: What happens when we're in a loading state? What do we display?
   if (loading) return <div>Looks like i'm loading</div>;
   //PF: What happens when we're in a error state? What do we display?
@@ -41,7 +43,7 @@ const Home = () => {
       </form>
       <div>
         <li>
-          <NameList myLists={myLists} />
+          <ContriesList myLists={myLists} />
         </li>
       </div>
       <div>
@@ -55,21 +57,5 @@ const Home = () => {
     </section>
   );
 };
-
-//PF: Usually this is split into 2 compoonents.
-const myLists = ["Peter", "Sachin", "Kevin", "Dhoni", "Alisa"];
-
-function NameList(props) {
-  const myLists = props.myLists;
-  const listItems = myLists.map((myList, idx) => (
-    <li key={myList + idx}>{myList}</li>
-  ));
-  return (
-    <div>
-      <h2>Rendering Lists inside component</h2>
-      <ul>{listItems}</ul>
-    </div>
-  );
-}
 
 export default Home;

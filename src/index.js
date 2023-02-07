@@ -15,18 +15,12 @@ import store from "./app/store";
 import { Provider } from "react-redux";
 
 //PF: Putting the apollo client into a utility class.
+import { AnApolloClient } from "./util/utils";
 //PF: Import as necessary to create the Apollo provider.
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloProvider} from "@apollo/client";
+
 //init GraphQL client
-const client = new ApolloClient({
-  uri: "https://countries.trevorblades.com/graphql",
-  cache: new InMemoryCache(),
-});
+const client = AnApolloClient();
 
 //const LIST_CCONTINENTS = client.query({query : gql`})
 
