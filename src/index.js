@@ -46,34 +46,31 @@ const LIST_CCONTINENTS = gql`
 
 export default function App() {
   return (
-    <ApolloProvider client={client}>
     <BrowserRouter>
       <Routes>
-      {
-        //PF: By having the nested route, the layout component will always render above the others.
-      }
-        <Route path="/" element={<Layout />}> 
+        {
+          //PF: By having the nested route, the layout component will always render above the others.
+        }
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="country" element={<CountryDetail />} />
           {
             //PF Will need to add in routes that can support a path like `/country/:id`
-            //Make sure the component can accept the prop to figure out which id is being passed. 
+            //Make sure the component can accept the prop to figure out which id is being passed.
           }
           <Route path="language" element={<LanguageDetail />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
-    </ApolloProvider>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode store={store}>
-    <App />
-  </React.StrictMode>
+  <ApolloProvider client={client}>
+    <React.StrictMode store={store}>
+      <App />
+    </React.StrictMode>
+  </ApolloProvider>
 );
-
-
- 
