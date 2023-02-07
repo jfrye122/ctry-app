@@ -30,19 +30,7 @@ const client = new ApolloClient({
 
 //const LIST_CCONTINENTS = client.query({query : gql`})
 
-//PF: Should also be stored in a utility class for reusability. Use GQL fragments.
-const LIST_CCONTINENTS = gql`
-  {
-    continents {
-      code
-      name
-      countries {
-        code
-        name
-      }
-    }
-  }
-`;
+
 
 export default function App() {
   return (
