@@ -4,12 +4,7 @@ export const client = new ApolloClient({
   uri: "https://countries.trevorblades.com/graphql",
   cache: new InMemoryCache(),
 });
-export function AnApolloClient() {
-  return new ApolloClient({
-    uri: "https://countries.trevorblades.com/graphql",
-    cache: new InMemoryCache(),
-  });
-}
+
 
 //PF: Should also be stored in a utility class for reusability. Use GQL fragments.
 export const GET_CONTINENTS = gql`

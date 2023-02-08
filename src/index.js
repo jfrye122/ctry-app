@@ -15,12 +15,12 @@ import store from "./app/store";
 import { Provider } from "react-redux";
 
 //PF: Putting the apollo client into a utility class.
-import { AnApolloClient } from "./util/utils";
+
 //PF: Import as necessary to create the Apollo provider.
 import { ApolloProvider} from "@apollo/client";
 
 //init GraphQL client
-const client = AnApolloClient();
+import { client } from './util/utils'
 
 //const LIST_CCONTINENTS = client.query({query : gql`})
 
@@ -40,6 +40,8 @@ export default function App() {
             //PF Will need to add in routes that can support a path like `/country/:id`
             //Make sure the component can accept the prop to figure out which id is being passed.
           }
+          <Route path="country/:id" element={<CountryDetail />} />
+			    <Route path="language/:id" element={<CountryDetail />} />
           <Route path="language" element={<LanguageDetail />} />
           <Route path="*" element={<NoPage />} />
         </Route>
@@ -51,8 +53,8 @@ export default function App() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ApolloProvider client={client}>
-    <React.StrictMode store={store}>
+
       <App />
-    </React.StrictMode>
+
   </ApolloProvider>
 );
