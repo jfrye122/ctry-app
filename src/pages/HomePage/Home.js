@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./Home.css";
 import { useQuery, gql } from "@apollo/client";
-import { AnApolloClient } from "../util/utils";
-import { ContriesList, myLists } from "./ContriesList";
+//import { AnApolloClient } from "../../util/utils";
+import { ContriesList, myLists } from "../ContriesList";
 
-const Home = () => {
+import FilterableCountryTable from "../../components/FilterableCountryTable/FilterableCountryTable";
+
+function Home() {
   const [state, setState] = useState({ searchText: "" });
 
   //PF: Apollo hook (this is your {loading, error, data}: useQuery(<<someGqlQuery>>, { variablesObj}))
@@ -32,6 +34,7 @@ const Home = () => {
 
   return (
     <section>
+      <FilterableCountryTable />
       <h1>Type to search by county name.</h1>
       <form>
         <input
