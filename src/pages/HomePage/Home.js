@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Home.css";
 import { useQuery, gql } from "@apollo/client";
 //import { AnApolloClient } from "../../util/utils";
-import { ContriesList, myLists } from "../ContriesList";
+import { ContriesList } from "../ContriesList";
 
 import FilterableCountryTable from "../../components/FilterableCountryTable/FilterableCountryTable";
 
@@ -13,14 +13,17 @@ function Home() {
   //PF: Look into how to use variables/filtering/subqueries in queries.
   const { loading, error, data } = useQuery(gql`
     {
-      countries {
-        name
+      continents {
         code
-        capital
+        name
+        countries {
+          code
+          name
+        }
       }
     }
   `);
-  
+
   //PF: What happens when we're in a loading state? What do we display?
   if (loading) return <div>Looks like i'm loading</div>;
   //PF: What happens when we're in a error state? What do we display?
@@ -34,7 +37,7 @@ function Home() {
 
   return (
     <section>
-      <FilterableCountryTable />
+      <FilterableCountryTable continents={data.continents} />
       <h1>Type to search by county name.</h1>
       <form>
         <input
@@ -46,19 +49,15 @@ function Home() {
       </form>
       <div>
         <li>
-          <ContriesList myLists={myLists} />
+          <ContriesList />
         </li>
       </div>
       <div>
         PF: Here's how we'd show a list of countries.
-        <ul>
-          {data.countries.map((country) => (
-            <li key={country.code}>{country.name}</li>
-          ))}
-        </ul>
+        <ul></ul>
       </div>
     </section>
   );
-};
+}
 
 export default Home;
