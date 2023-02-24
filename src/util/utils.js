@@ -42,6 +42,14 @@ export const GET_COUNTRY_CODE = gql`
   }
 `;
 
+export const GET_LANGUAGES = gql`
+  query GetLanguages {
+    languages {
+      name
+      code
+    }
+  }
+`;
 export const GET_LANGUAGE_CODE = gql`
   query Countries($code: String) {
     language(code: $code) {
