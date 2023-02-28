@@ -4,52 +4,32 @@ import { useState } from "react";
 
 export default function FilterableCountryTable({ continents }) {
   const [filterText, setFilterText] = useState("");
+  const [selectedIds, setSelectedIds] = useState(new Set());
 
-  const [isAFChecked, setIsAFChecked] = useState(true); //JF these are temp till I change it to a better way that groups them.
-  const [isANChecked, setIsANChecked] = useState(true);
-  const [isASChecked, setIsASChecked] = useState(true);
-  const [isEUChecked, setIsEUChecked] = useState(true);
-  const [isNAChecked, setIsNAChecked] = useState(true);
-  const [isOCChecked, setIsOCChecked] = useState(true);
-  const [isSAChecked, setIsSAChecked] = useState(true);
-
-  //JF this will replace above
-  const [checkedState, setCheckedState] = useState(
-    new Array(continents.length).fill(false)
-  );
-
-  //create
+  function handleToggle(toggledId) {
+    // Create a copy (to avoid mutation).
+    const nextIds = new Set(selectedIds);
+    if (nextIds.has(toggledId)) {
+      nextIds.delete(toggledId);
+    } else {
+      nextIds.add(toggledId);
+    }
+    setSelectedIds(nextIds);
+  }
 
   return (
     <div>
       <SearchBar
         filterText={filterText}
-        isAFChecked={isAFChecked}
-        isANChecked={isANChecked}
-        isASChecked={isASChecked}
-        isEUChecked={isEUChecked}
-        isNAChecked={isNAChecked}
-        isOCChecked={isOCChecked}
-        isSAChecked={isSAChecked}
         onFilterTextChange={setFilterText}
-        onIsAFChecked={setIsAFChecked}
-        onIsANChecked={setIsANChecked}
-        onIsASChecked={setIsASChecked}
-        onIsEUChecked={setIsEUChecked}
-        onIsNAChecked={setIsNAChecked}
-        onIsOCChecked={setIsOCChecked}
-        onIsSAChecked={setIsSAChecked}
+        selectedIds={ selectedIds }
+        onHandleToggle = {handleToggle}
+        continents={continents}
       />
       <CountryTable
         continents={continents}
         filterText={filterText}
-        isAFChecked={isAFChecked}
-        isANChecked={isANChecked}
-        isASChecked={isASChecked}
-        isEUChecked={isEUChecked}
-        isNAChecked={isNAChecked}
-        isOCChecked={isOCChecked}
-        isSAChecked={isSAChecked}
+        selectedIds={ selectedIds }
       />
     </div>
   );
