@@ -43,7 +43,7 @@ export default function CountryTable({
   
     continent.countries.forEach((country) => {
       const countryRow = (country.name.toLowerCase().indexOf(filterText.toLowerCase()) ===
-      -1) || filterText === '' ? <CountryRow name={country.name} key={country.code} /> : <CountryRow name={country.name} color={'yellow'} key={country.code} />
+      -1) || filterText === '' ? <CountryRow name={country.name} key={country.code} /> : <CountryRow name={country.name} isHighlighted={true} key={country.code} />
       
       rows.push(countryRow);
       return;

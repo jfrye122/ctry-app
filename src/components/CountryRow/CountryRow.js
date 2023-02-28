@@ -1,7 +1,12 @@
-export default function CountryRow({ name, color = 'black' }) {
+import "./CountryRow.css"
+
+export default function CountryRow({ name, isHighlighted = false }) {
   return (
     <tr>
-      <td colSpan="2" style={{ color: color}}>{name}</td>
+      <td colSpan="2" className={
+        isHighlighted ? 'highlighted' : ''
+      }
+      >{name}</td>
     </tr>
   );
 }

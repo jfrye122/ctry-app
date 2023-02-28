@@ -18,12 +18,14 @@ export default function SearchBar({
 }) {
   return (
     <form>
+      <label>Search for:{' '}
       <input
         type="text"
         value={filterText}
-        placeholder="Search for country"
+        placeholder="Country Name"
         onChange={(e) => onFilterTextChange(e.target.value)}
-      /><br />
+      />
+      </label><br />
       <label>
         <input
           type="checkbox"
