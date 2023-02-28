@@ -1,7 +1,7 @@
-export default function CountryRow({ name }) {
+export default function CountryRow({ name, color = 'black' }) {
   return (
     <tr>
-      <td colSpan="2">{name}</td>
+      <td colSpan="2" style={{ color: color}}>{name}</td>
     </tr>
   );
 }
