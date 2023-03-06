@@ -5,35 +5,37 @@ export const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
-//PF: Should also be stored in a utility class for reusability. Use GQL fragments.
 export const GET_CONTINENTS = gql`
   query GetContinents {
     continents {
-      code
       name
+      code
       countries {
-        code
         name
+        code
       }
     }
   }
 `;
 
-export const GET_COUNTRIES = gql`
+export const GET_COUNTRIESWITHLANGUAGES = gql`
   query GetContries {
     countries {
-      code
       name
+      code
+      languages{
+        code
+      }
     }
   }
 `;
 
 export const GET_COUNTRY_CODE = gql`
-  query Countries($code: String!) {
+  query Countries($code: ID!) {
     country(code: $code) {
       name
       capital
+      currency
       languages {
         code
         name
@@ -51,7 +53,7 @@ export const GET_LANGUAGES = gql`
   }
 `;
 export const GET_LANGUAGE_CODE = gql`
-  query Countries($code: String) {
+  query Countries($code: ID!) {
     language(code: $code) {
       name
       native

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CountryContenentRow from "../CountryContenentRow/CountryContenentRow";
 import CountryRow from "../CountryRow/CountryRow";
 
@@ -16,13 +17,17 @@ export default function CountryTable({ continents, filterText, selectedIds }) {
         const countryRow =
           country.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1 ||
           filterText === "" ? (
-            <CountryRow name={country.name} key={country.code} />
+            <tr key={country.code}>
+              <td colSpan="2" className={""}>
+                <Link to={`country/${country.code}`}>{country.name}</Link>
+              </td>
+            </tr>
           ) : (
-            <CountryRow
-              name={country.name}
-              isHighlighted={true}
-              key={country.code}
-            />
+            <tr>
+              <td colSpan="2" className={"highlighted"}>
+                <Link to={`country/${country.code}`}>{country.name}</Link>
+              </td>
+            </tr>
           );
         rows.push(countryRow);
         return;
