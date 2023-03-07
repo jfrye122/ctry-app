@@ -21,7 +21,7 @@ export default function CountryDetail() {
   const currency = data.country.currency;
 
   const languages = data.country.languages.map((language) => (
-    <Link to={`../language/${language.code}`} key={language.code} replace={false} >
+    <Link to={`../language/${language.code}`} key={language.code} >
       {language.name}
     </Link>
   ));
