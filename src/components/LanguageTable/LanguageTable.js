@@ -12,7 +12,7 @@ export default function LanguageTable() {
     return <div>Error: {JSON.stringify(error, null, 3)}</div>;
   }
   return (
-    <Card title="Languages" type="inner">
+    <Card title={<h1>Languages</h1>} type="inner">
       <List
         // bordered
         dataSource={data.languages}

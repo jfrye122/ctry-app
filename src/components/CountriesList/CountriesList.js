@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { GET_COUNTRIESWITHLANGUAGES } from "../../util/utils.js";
+import { Card, Space} from "antd";
 
 export default function CountriesList({code}) {
   const rows = [];
@@ -28,9 +29,11 @@ export default function CountriesList({code}) {
 
 //   console.log(rows);
   return (
-    <>
-      <h2>Countries spoken in: </h2>
-      {rows}
-    </>
+    <Card title={<h3>Spoken in: </h3>} type="inner" style={{
+      marginTop: 16,
+    }}>
+      <Space direction="vertical">{rows}</Space>
+      
+    </Card>
   );
 }

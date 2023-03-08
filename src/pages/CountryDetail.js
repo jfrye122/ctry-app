@@ -1,7 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRY_CODE } from "../util/utils";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Card, Space, Layout } from "antd";
+
+const { Content } = Layout;
 
 export default function CountryDetail() {
   let params = useParams();
@@ -13,28 +16,39 @@ export default function CountryDetail() {
   if (loading) return <div>Loading...</div>;
   if (error) return <pre>Error : {JSON.stringify(error, null, 2)}</pre>;
 
-  console.log(data);
+  //console.log(data);
 
-  //have the data
   const name = data.country.name;
   const capital = data.country.capital;
   const currency = data.country.currency;
 
   const languages = data.country.languages.map((language) => (
-    <Link to={`../language/${language.code}`} key={language.code} >
+    <Link to={`../language/${language.code}`} key={language.code}>
       {language.name}
     </Link>
   ));
 
   return (
-    <>
-      <h1>Country Details</h1>
-      <div>Country Name: {name}</div>
-      <div>Captital: {capital}</div>
-      <div>Currency: {currency}</div>
+    <Layout>
+      <Content>
+        <Card title={<h1>Country : {name} </h1>}>
+          <Card title={<h3> Details </h3>} type="inner">
+            <div>Name: {name}</div>
+            <div>Captital: {capital}</div>
+            <div>Currency: {currency}</div>
+          </Card>
 
-      <h2>Languages spoken:</h2>
-      <div>{languages}</div>
-    </>
+          <Card
+            style={{
+              marginTop: 16,
+            }}
+            title={<h3>Languages spoken:</h3>}
+            type="inner"
+          >
+            <Space direction="vertical">{languages}</Space>
+          </Card>
+        </Card>
+      </Content>
+    </Layout>
   );
 }

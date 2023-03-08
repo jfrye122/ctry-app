@@ -1,48 +1,44 @@
 import { Link } from "react-router-dom";
-import CountryContenentRow from "../CountryContenentRow/CountryContenentRow";
-import CountryRow from "../CountryRow/CountryRow";
-
+import { Card, List } from "antd";
+import "./CountryTable.css"
 export default function CountryTable({ continents, filterText, selectedIds }) {
-  const rows = [];
-
-  continents.forEach((continent) => {
+  
+  //console.log(continents);
+  const list = continents.map((continent) => {
     if (selectedIds.has(continent.code)) {
-      rows.push(
-        <CountryContenentRow
-          name={continent.name}
+      return (
+        <List
           key={"CC" + continent.code}
+          header={<h3>{continent.name}</h3>}
+          bordered
+          dataSource={continent.countries}
+          renderItem={(item) => (
+            <List.Item key={item.code}>
+              <Link
+                className={
+                  item.name.toLowerCase().indexOf(filterText.toLowerCase()) ===
+                    -1 || filterText === ""
+                    ? ""
+                    : "highlighted"
+                }
+                to={`country/${item.code}`}
+              >
+                {item.name}
+              </Link>
+            </List.Item>
+          )}
         />
       );
-      continent.countries.forEach((country) => {
-        const countryRow =
-          country.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1 ||
-          filterText === "" ? (
-            <tr key={country.code}>
-              <td colSpan="2" className={""}>
-                <Link to={`country/${country.code}`}>{country.name}</Link>
-              </td>
-            </tr>
-          ) : (
-            <tr>
-              <td colSpan="2" className={"highlighted"}>
-                <Link to={`country/${country.code}`}>{country.name}</Link>
-              </td>
-            </tr>
-          );
-        rows.push(countryRow);
-        return;
-      });
+    }else{
+      return null;
     }
   });
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ContriesList</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <Card title={<h3>Continents Display</h3>} type="inner" style={{
+      marginTop: 16,
+    }}>
+      {list}
+    </Card>
   );
 }
