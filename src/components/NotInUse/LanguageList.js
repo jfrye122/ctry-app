@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_LANGUAGE_CODE } from "../util/utils";
+import { GET_LANGUAGE_CODE } from "../../util/utils";
 
 export function LanguageList({code}) {
     const {loading, error, data} = useQuery(GET_LANGUAGE_CODE,{ variables: {code}});

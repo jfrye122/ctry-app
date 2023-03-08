@@ -1,5 +1,5 @@
-import SearchBar from "../SearchBar/SearchBar";
-import CountryTable from "../CountryTable/CountryTable";
+import SearchBar from "../../SearchBar/SearchBar";
+import CountryTable from "../../CountryTable/CountryTable";
 import { useState } from "react";
 
 export default function FilterableCountryTable({ continents }) {
