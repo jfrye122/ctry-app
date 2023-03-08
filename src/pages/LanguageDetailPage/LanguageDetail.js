@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { GET_LANGUAGE_CODE } from "../util/utils";
+import { GET_LANGUAGE_CODE } from "../../util/utils";
 import { useParams } from "react-router-dom";
-import CountriesList from "../components/CountriesList/CountriesList";
+import CountriesList from "../../components/CountriesList/CountriesList";
 import { Card, Layout } from "antd";
 
 import React from "react";

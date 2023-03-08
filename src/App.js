@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/HomePage/Home";
-import CountryDetail from "./pages/CountryDetail";
-import LanguageDetail from "./pages/LanguageDetail";
+import CountryDetail from "./pages/CountryDetailPage/CountryDetail";
+import LanguageDetail from "./pages/LanguageDetailPage/LanguageDetail";
 import NoPage from "./pages/NoPage";
 
 function App() {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { GET_COUNTRY_CODE } from "../util/utils";
+import { GET_COUNTRY_CODE } from "../../util/utils";
 import { Link, useParams } from "react-router-dom";
 import { Card, Space, Layout } from "antd";
 
